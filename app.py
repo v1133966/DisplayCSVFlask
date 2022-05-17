@@ -33,6 +33,7 @@ def root():
 
 # Runs the Flask application
 if __name__ == '__main__':
+    """
     data.init_db()
     data.extract_vax()
     data.extract_cases()
@@ -41,7 +42,26 @@ if __name__ == '__main__':
     data.store_real_estate()
     statistical_info = data.get_data()
     #print(statistical_info)
+    """
+    statistical_info = data.get_data()
+
+    # Exports the statistical_info array into a csv file names data.csv
     df = pd.DataFrame(statistical_info)
     df.to_csv('data.csv')
+
+    """
+    # Test 6 Victor Li
+    # Asserts that the lenth of the exported csv file has the correct length
+    # statistical_info will have length X, but the csv has an extra row for the header
+    # of each column. Thus, the amount of rows in data.csv = len(statistical_info) + 1
+    
+    statistical_info = data.get_data()
+    stat_info_len = len(statistical_info)
+    input_file = open("data.csv", "r+")
+    reader_file = csv.reader(input_file)
+    value = len(list(reader_file))
+    assert(stat_info_len + 1 == value)
+    """
+
 
     app.run(debug=True)
