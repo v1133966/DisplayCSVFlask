@@ -5,6 +5,10 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import csv  # Key library to read and view CSV file of Covid and real estate data
+import cdc as data
+import pandas as pd
+import os
+import json
 
 app = Flask(__name__)
 
@@ -29,4 +33,15 @@ def root():
 
 # Runs the Flask application
 if __name__ == '__main__':
+    data.init_db()
+    data.extract_vax()
+    data.extract_cases()
+    data.store_vax()
+    data.store_cases()
+    data.store_real_estate()
+    statistical_info = data.get_data()
+    #print(statistical_info)
+    df = pd.DataFrame(statistical_info)
+    df.to_csv('data.csv')
+
     app.run(debug=True)
