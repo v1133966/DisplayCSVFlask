@@ -24,7 +24,6 @@
         <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
         <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
     </head>
-  
     <!-- Body where the button is created and the CSV is displayed -->
     <body>
         <div class="card">
@@ -32,7 +31,6 @@
                 <form method="post">
                 <button class="btn btn-success mt-2">Render CSV</button>
                 </form>
-              
                 <!-- Displays the CSV contents as a table -->
                 <div class="mt-4">
                     {% if request.method == 'POST'%}
@@ -59,6 +57,8 @@
             </div>
         </div>
     </body>
+
+    <!-- Script to allow for sorting and dynamic entry amount per page -->
     <script type="text/javascript">
         $('#proxies').DataTable();
     </script>
